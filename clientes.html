@@ -1,0 +1,207 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>nativeDroid II - jQueryMobile Template</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+		<link rel="stylesheet" href="css/jquery.mobile.min.css" />
+		<link rel="stylesheet" href="vendor/waves/waves.min.css" />
+		<link rel="stylesheet" href="vendor/wow/animate.css" />
+		<link rel="stylesheet" href="css/nativedroid2.css" />
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<link href="js/dataTables.bootstrap.min.css" rel="stylesheet" />
+    	<link href="js/responsive.bootstrap.min.css" rel="stylesheet" />
+		<link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+		<link href="css/floating-labels.css" rel="stylesheet" />
+		<link href="css/component-chosen.css" rel="stylesheet" />
+		<link href="css/jquery.switchButton.css" rel="stylesheet" />
+		<link href="css/select2.min.css" rel="stylesheet" />
+		<link href="css/select2-bootstrap4.min.css" rel="stylesheet" />
+		
+		<meta name="mobile-web-app-capable" content="yes">
+	 	<meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<style type="text/css">
+		.content {
+			margin:0px auto;
+			text-align:center;
+			background-color:#CCCCCC;
+		}
+		 
+		.content img {
+			vertical-align:middle;
+		}
+		.margin_row_top{
+		  margin-top: -0.75em;
+		}
+
+		.help-block {
+		  color: #a94442;
+		  background-color: #f2dede;
+		  border-color: #ebccd1;
+		  padding:5px 20px 5px 20px;
+		  font-size: 12px;
+		  margin-top: -1em;
+		}
+	</style>
+	<meta charset="UTF-8">
+	</head>
+	<body>
+
+		<div data-role="page">
+
+			<nd2-include data-src="examples/fragments/panel.left.html"></nd2-include>
+
+			<div data-role="panel" id="bottomsheet" data-animate="false" data-position='bottom' data-display="overlay">
+				<nd2-include data-src="examples/fragments/bottom.sheet.html"></nd2-include>
+			</div>
+
+			<div style="background-color: black;" data-role="header" data-position="fixed" class="wow fadeInDown" data-wow-delay="0.2s">
+				<a href="#bottomsheet" class="ui-btn ui-btn-right wow fadeIn" data-wow-delay='1.2s'><i class="zmdi zmdi-more-vert"></i></a>
+				<a href="#leftpanel" class="ui-btn ui-btn-left wow fadeIn" data-wow-delay='0.8s'><i class="zmdi zmdi-menu"></i></a>
+				<h1 class="wow fadeIn" data-wow-delay='0.4s'>Control de Clientes.</h1>
+			</div>
+
+			<div role="main" class="ui-content" data-inset="false">
+				<center>
+					<h5 class="text-info">.:: Módulo de Clientes ::.</h5>	
+				</center>
+				<div id="divClientes">
+					<table id="datatable-clientes" class="table display responsive nowrap">
+				      <thead>
+				        <tr>
+				          <th class="wd-15p">Id</th>
+				          <th class="wd-15p">Nombre del Cliente</th>
+				          <th class="wd-20p">Fec. Nac.</th>
+				          <th class="wd-15p">Teléfono</th>
+				          <th class="wd-10p">Dirección</th>
+				          <th class="wd-10p">Compras</th>
+				          <th class="wd-10p">Editar </th>
+				        </tr>
+				      </thead>
+				      <tbody>
+				        
+				      </tbody>
+				    </table>
+				</div>    
+			</div>
+
+		</div>
+
+		<form id="form_register_cliente"  class="needs-validation" novalidate>
+			<div id="modalClientes" class="modal" role="dialog">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="titleModalCliente"></h5>
+			        <i class="text-danger fas fa-times-circle close" data-dismiss="modal" aria-label="Close"></i>
+			      </div>
+			      <div class="modal-body">
+			        <div class="row">
+			        	<input type="text" name="idCliente" id="idCliente" >
+			        	<div class="col-xs-12 form-label-group">
+		                    <input type="text" id="nombres" name="nombres" class="form-control input-lg" placeholder="Nombres" required >
+		                    <label for="nombres"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nombres</font></font></label>
+		                </div>
+		                <div class="col-xs-12 form-label-group margin_row_top">
+		                    <input type="text" id="apellidos" name="apellidos" class="form-control input-lg" placeholder="Apellidos" required>
+		                    <label for="apellidos"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Apellidos</font></font></label>
+		                </div>
+		                <div class="col-xs-12 margin_row_top">
+		                    <label class="form-control-label">Fecha de Nacimiento:</label>
+		                    <div class="clearfix">
+		                      <input class="form-control" type="date" name="fec_nacimiento" id="fec_nacimiento" required>
+		                    </div>
+		                </div>
+		                <div class="col-xs-12 form-label-group" style="margin-top: 0.75em;">
+		                    <input type="text" id="direccion" name="direccion" class="form-control input-lg" placeholder="Dirección" >
+		                    <label for="direccion"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dirección</font></font></label>
+		                </div>
+		                <div class="col-xs-12 margin_row_top">
+		                    <div id="paises" class="clearfix">
+		                    	
+		                    </div>                 
+		                </div>
+		                <div class="col-xs-12 form-label-group" style="margin-top: 0.25em;">
+		                    <input type="text" id="ciudad" name="ciudad" class="form-control input-lg" placeholder="Ciudad" >
+		                    <label for="ciudad"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ciudad</font></font></label>
+		                </div>
+		                <div class="col-xs-12 margin_row_top">
+		                    <div class="input-group">
+		                        <div class="input-group-prepend">
+		                            <span class="input-group-text" id="basic-addon1"><i class="fas fa-phone"></i></span>
+		                        </div>
+		                        <input type="text" id="fono_contacto" name="fono_contacto" class="form-control input-sm" placeholder="Teléfono" value="">                     
+		                    </div>
+		                </div>
+		                <div class="col-xs-12">
+		                	<label class="form-control-label">recibe correo: </label>
+		                    <div class="switch-wrapper clearfix">
+	                            <input type="checkbox" id="recibeCorreo" name="recibeCorreo" checked>
+	                        </div>
+		                </div>
+		                <div class="col-xs-12  input-group ">
+		                    <div class="input-group-prepend">
+		                        <span class="input-group-text" id="basic-addon1">@</span>
+		                    </div>
+		                    <input type="email" id="email" name="email" class="form-control" placeholder="Correo electrónico">
+		                </div>
+
+						<div class="col-xs-12  input-group " style="margin-top: 0.25em;">
+		                    <select multiple data-placeholder="Productos de interes..." id="productos" name="productos"  class="form-control select2" >
+	    						<option value="" ></option>
+							</select>
+		                </div>
+						<div class="col-xs-12 form-label-group" style="margin-top: 0.25em;">
+		                    <input type="text" id="observaciones" name="observaciones" class="form-control input-lg" placeholder="Observaciones" >
+		                    <label for="observaciones"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Observaciones</font></font></label>
+		                </div>
+			        </div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="submit" class="btn btn-primary">Guardar cliente</button>
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</form>
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/select2.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/jquery.mobile.min.js"></script>
+		<script src="vendor/waves/waves.min.js"></script>
+		<script src="vendor/wow/wow.min.js"></script>
+		<script src="js/nativedroid2.js"></script>
+		<script src="nd2settings.js"></script>
+		<script src="js/chosen.jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<script src="js/jquery.dataTables.min.js"></script>
+	    <script src="js/dataTables.bootstrap4.min.js"></script>
+	    <script src="js/dataTables.responsive.min.js"></script>
+	    <script src="js/responsive.bootstrap.min.js"></script>
+		<script src="js/dataTables.buttons.min.js"></script>
+    	<script src="js/buttons.bootstrap.min.js"></script> 
+    	<script src="js/clientes.js"></script>
+    	<script src="js/FuncGral.js"></script>
+    	<script src="js/jquery.switchButton.js"></script>
+    	<script src="js/jquery.blockUI.js"></script>
+
+    	<!-- JavaScript -->
+		<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/alertify.min.js"></script>
+			
+		<!-- CSS -->
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/alertify.min.css"/>
+		<!-- Default theme -->
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/default.min.css"/>
+		<!-- Semantic UI theme -->
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/semantic.min.css"/>
+		<!-- Bootstrap theme -->
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.4/build/css/themes/bootstrap.min.css"/>
+
+		
+	</body>
+</html>
