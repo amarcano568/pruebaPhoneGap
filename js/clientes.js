@@ -1,15 +1,16 @@
 $(document).on('ready', function() {
-
+    var objetoDataTables_clientes = '';
     $('#paises').load('paises.html');
 
-    //cargarProductos()
+    cargarProductos()
 
     function cargarProductos() {
 
         $.ajax({ // Busca el Tipo de Cliente
             url: "https://siglabweb.medlab.com.pe/desarrollo/clienteWeb/funcgral.php",
             type: "post",
-            dataType: "json",
+            crossDomain: true,
+            dataType: 'json',
             data: {
                 'Tipo': 'CargaProductos',
                 'P1': '',
@@ -90,22 +91,10 @@ $(document).on('ready', function() {
 
     function cargaClientesss() {
 
-        // $.post('https://siglabweb.medlab.com.pe/desarrollo/clienteWeb/funcgral.php', {
-        //         'Tipo': 'listarClientes',
-        //         'P1': '',
-        //         'P2': '',
-        //         'P3': '',
-        //         'P4': '',
-        //         'P5': ''
-        //     })
-        //     .done(function(msg) {
-        //         //console.log(msg)
-        //         $("#divClientes").html(msg);
-        //destroy_existing_data_table('#datatable-clientes');
+
         $.fn.dataTable.ext.buttons.newCliente = {
             className: 'buttons-alert',
             action: function(e, dt, node, config) {
-
                 $("#titleModalCliente").html('<i class="fas fa-user-plus"></i> Agregar nuevo Cliente.');
                 $("#idCliente").val('');
                 $("#modalClientes").modal('show');
@@ -159,7 +148,8 @@ $(document).on('ready', function() {
             "iDisplayLength": 10,
             "ajax": {
                 "method": "POST",
-                "url": "https://siglabweb.medlab.com.pe/desarrollo/clienteWeb/funcgral.php",
+                "crossDomain": true,
+                "url": "https://siglabweb.medlab.com.pe/desarrollo/clienteWeb/FuncGral.php",
                 "data": {
                     'Tipo': 'listarClientes',
                     'P1': '',
@@ -247,7 +237,8 @@ $(document).on('ready', function() {
             $.ajax({
                 url: "https://siglabweb.medlab.com.pe/desarrollo/clienteWeb/funcgral.php",
                 type: 'POST',
-                dataType: "json",
+                crossDomain: true,
+                dataType: 'jsonp',
                 data: {
                     'Tipo': 'guardarCliente',
                     'P1': datos,
@@ -263,7 +254,8 @@ $(document).on('ready', function() {
                 console.log(data)
                 $.unblockUI();
                 alertify.success('Cliente registrado...');
-                objetoDataTables_clientes.ajax.reload();
+                cargaClientesss();
+                $("#modalClientes").modal('hide');
 
             }).fail(function(statusCode, errorThrown) {
                 $.unblockUI();
